@@ -4,7 +4,7 @@ My Reputation Management Plugin
 A reputation management wp-plugin
 
 I am looking for a reputation management plugin that is based on my html demo here. 
-http://demuk.co.uk/reputation/[http://demuk.co.uk/reputation/]
+http://demuk.co.uk/reputation/
 
 The system is simple and it works like this,  people get given the url or a card with a QR code on it. They visit the url and are presented with the page along the lines of the above. 
 
