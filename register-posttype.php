@@ -18,7 +18,7 @@ function register_client_post_type() {
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'products'
 		)
-	);
+	));
 }
 add_action( 'init', 'register_client_post_type' );
 ?>
