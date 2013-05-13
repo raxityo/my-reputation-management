@@ -10,6 +10,7 @@ Author URI: http://thetechtime.com/
 
 define( CONTEXT_ID ,"business");
 include_once'Metabox.class.php';
+include_once'helpers.php';
 
 add_action( 'init', 'create_post_type_business' );
 function create_post_type_business() {

@@ -45,41 +45,52 @@ Template Name:Business
 				<div id="responseform" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="responseForm" aria-hidden="true">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h3 id="responseForm" class="text-center">Response for <?=get_the_title()?> </h3>
+						<h3 id="responseForm" class="text-center">Review <?=get_the_title()?> </h3>
 					</div>
 					<div class="modal-body">
-						<div class="alert alert-info">
+						<div class="alert alert-error" id="error" style="display:none">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							This is just a demo of form.<br/>
-							Actual form will send data to <strong><?=$email?></strong>
+							Please enter correct info.
 						</div>
-						<form class="bs-docs-example form-horizontal">
+						<form action="javascript:sendform();" class="bs-docs-example form-horizontal">
 						    <div class="control-group">
-								<label class="control-label" for="inputName">Name</label>
+								<label class="control-label" for="name">Name</label>
 								<div class="controls">
-									<input type="text" id="inputName" placeholder="Enter your name ">
+									<input type="text" id="name" placeholder="Enter your name ">
 								</div>
 						    </div>
 						    <div class="control-group">
-								<label class="control-label" for="inputEmail">Email</label>
+								<label class="control-label" for="email">Email</label>
 								<div class="controls">
-									<input type="text" id="inputEmail" placeholder="Enter your email address">
+									<input type="email" id="email" placeholder="Enter your email address">
 								</div>
 						    </div>
 						    <div class="control-group">
-								<label class="control-label" for="inputComments">Comment</label>
+								<label class="control-label" for="comments">Comment</label>
 								<div class="controls">
-									<textarea rows="6" id="inputComments" placeholder="Enter your comments here"></textarea>
+									<textarea rows="6" id="comments" name="comments" placeholder="Enter your comments here"></textarea>
 								</div>
 						    </div>
 						    <div class="control-group">
 								<div class="controls">
-									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="submit" class="btn btn-success">
+										<i class="icon-envelope icon-white"></i>
+										Submit
+									</button>
 								    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 								</div>
 						    </div>
 						</form>
 					</div>
+				</div>
+				<div id="thankyou" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="responseForm" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="responseForm" class="text-center">Thank You</h3>
+					</div>
+					<div class="modal-body">
+						<?=get_the_title()?> will get back to you shortly.. please give me some message here.
+					</div>					
 				</div>
 			</div>
 		<!-- 	/ middle -->
@@ -93,5 +104,50 @@ Template Name:Business
 			<?php } ?>
 		</div>
 	</div>
+	<script type="text/javascript">
+	function sendform(){
+		if(!valid()){
+			jQuery("#error").fadeIn();
+			return false;
+		}
+		else{
+			jQuery("#responseform").css('opacity','0.5');
+		}
+		var data = {
+			action: 'send_review_mail',
+			id: <?=get_the_ID()?>,
+			name: jQuery("#name").val(),
+			email: jQuery("#email").val(),
+			comments: jQuery("#comments").val()
+		};
+		jQuery.post("<?=admin_url( 'admin-ajax.php' )?>",data,function(response){
+			if(response == 1)
+			{
+				jQuery("#responseform").modal("hide").remove();
+				jQuery("#thankyou").modal().attr("id","responseform");
+			}
+		});
+		return false;
+	}
+	function valid(){
+		if(jQuery("#name").val().length ==0){
+			jQuery("#name").parent().parent().addClass("error");
+			return false;
+		}
+		if(!IsEmail(jQuery("#email").val())){
+			jQuery("#email").parent().parent().addClass("error");
+			return false;
+		}
+		if(jQuery("#comments").val().length ==0){
+			jQuery("#comments").parent().parent().addClass("error");
+			return false;
+		}
+		return true;
+	}
+	function IsEmail(email) {
+		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		return regex.test(email);
+	}
+	</script>
  </body>
 </html>
