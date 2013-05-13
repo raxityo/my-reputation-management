@@ -50,23 +50,23 @@ Template Name:Business
 					<div class="modal-body">
 						<div class="alert alert-error" id="error" style="display:none">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							Please enter correct info.
+							Please ensure you provide a name and a comment.
 						</div>
 						<form action="javascript:sendform();" class="bs-docs-example form-horizontal">
 						    <div class="control-group">
-								<label class="control-label" for="name">Name</label>
+								<label class="control-label" for="name">Your Name : </label>
 								<div class="controls">
 									<input type="text" id="name" placeholder="Enter your name ">
 								</div>
 						    </div>
 						    <div class="control-group">
-								<label class="control-label" for="email">Email</label>
+								<label class="control-label" for="email">Your Email : </label>
 								<div class="controls">
 									<input type="email" id="email" placeholder="Enter your email address">
 								</div>
 						    </div>
 						    <div class="control-group">
-								<label class="control-label" for="comments">Comment</label>
+								<label class="control-label" for="comments">Your Comments : </label>
 								<div class="controls">
 									<textarea rows="6" id="comments" name="comments" placeholder="Enter your comments here"></textarea>
 								</div>
@@ -89,7 +89,7 @@ Template Name:Business
 						<h3 id="responseForm" class="text-center">Thank You</h3>
 					</div>
 					<div class="modal-body">
-						<?=get_the_title()?> will get back to you shortly.. please give me some message here.
+						Thank you for your feedback, this will now be processed, we appreciate you taking the time to leave feedback.
 					</div>					
 				</div>
 			</div>
@@ -134,19 +134,11 @@ Template Name:Business
 			jQuery("#name").parent().parent().addClass("error");
 			return false;
 		}
-		if(!IsEmail(jQuery("#email").val())){
-			jQuery("#email").parent().parent().addClass("error");
-			return false;
-		}
 		if(jQuery("#comments").val().length ==0){
 			jQuery("#comments").parent().parent().addClass("error");
 			return false;
 		}
 		return true;
-	}
-	function IsEmail(email) {
-		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		return regex.test(email);
 	}
 	</script>
  </body>
