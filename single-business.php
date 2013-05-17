@@ -52,35 +52,35 @@ Template Name:Business
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
 							Please ensure you provide a name and a comment.
 						</div>
-						<form action="javascript:sendform();" class="bs-docs-example form-horizontal">
+						<div class="form-horizontal">
 						    <div class="control-group">
-								<label class="control-label" for="name">Your Name : </label>
+								<label class="control-label" for="name">Your Name (required): </label>
 								<div class="controls">
 									<input type="text" id="name" placeholder="Enter your name ">
 								</div>
 						    </div>
 						    <div class="control-group">
-								<label class="control-label" for="email">Your Email : </label>
+								<label class="control-label" for="email">Your Email (optional): </label>
 								<div class="controls">
 									<input type="email" id="email" placeholder="Enter your email address">
 								</div>
 						    </div>
 						    <div class="control-group">
-								<label class="control-label" for="comments">Your Comments : </label>
+								<label class="control-label" for="comments">Your Comments (required): </label>
 								<div class="controls">
 									<textarea rows="6" id="comments" name="comments" placeholder="Enter your comments here"></textarea>
 								</div>
 						    </div>
 						    <div class="control-group">
 								<div class="controls">
-									<button type="submit" class="btn btn-success">
+									<button class="btn btn-success" onclick="sendform()">
 										<i class="icon-envelope icon-white"></i>
 										Submit
 									</button>
 								    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 								</div>
 						    </div>
-						</form>
+						</div>
 					</div>
 				</div>
 				<div id="thankyou" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="responseForm" aria-hidden="true">
@@ -127,7 +127,7 @@ Template Name:Business
 				jQuery("#thankyou").modal().attr("id","responseform");
 			}
 		});
-		return false;
+		return true;
 	}
 	function valid(){
 		if(jQuery("#name").val().length ==0){
