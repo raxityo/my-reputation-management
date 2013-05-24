@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 My Reputation Management Plugin
 ========================
 
@@ -35,3 +36,9 @@ They will share a common thank you page.
 
 The public will be posting the information(review) no need for registration at all.
 
+=======
+my-reputation-management
+========================
+
+A reputation management plugin for wordpress
+>>>>>>> a4d5d318977bee3127940b4c15c561ad2c55c3a8
